@@ -10,15 +10,6 @@ def cm2deg(cm):
 def deg2cm(deg):
     return deg * 14 / 360
 
-def rotateSync(targetL, degR):
-    # dirL = 
-    [m.resetDeg() for m in motors]
-    while (motL.readDeg(), motR.readDeg()) < (degL, degR):
-        motL.rotate(dirL * _p)
-        motR.rotate(dirR * _p)
-        delay(5)
-        
-
 
 class Motor:
     
@@ -58,8 +49,8 @@ class Motor:
 
        
 # Maqueen Plus motor control 
-# direction:1 forward  2 back
-# speed：0~255
+# direction: 0=>stop // 1=>forward // 2=>back
+# speed：0..255
 
 debug = True
 
@@ -76,7 +67,7 @@ def rotateTo(tL, tR):
     delay(50)
     
     # prevents a too big overshooting
-    reduction = (tL - sgnL * int(0.1 * _p)) / tL
+    reduction = (tL - sgnL * int(0.05 * _p)) / tL
     tL *= reduction
     tR *= reduction
     
@@ -105,15 +96,9 @@ def rotateTo(tL, tR):
     return degL, degR
     
     
-
-def motor(directionL, speedL, directionR, speedR):
+def motor(dirL, pL, dirR, pR):
     try:
-        buf = bytearray(5)
-        buf[0] = 0x00
-        buf[1] = directionL
-        buf[2] = speedL
-        buf[3] = directionR
-        buf[4] = speedR
+        buf = bytearray([0x00,dirL, pL, dirR, pR])
         i2c.write(i2c_motors, buf)
     except:
         print("Please switch on mbRobot!")
@@ -139,7 +124,11 @@ def left(deg=None):
     
 def right(deg=None):
     if deg:
-        rotateTo(2 * deg, -2 * deg)
+        tL, tR = 2 * deg, -2 * deg
+        degL, degR = rotateTo(tL, tR)
+        deltaL, deltaR = tL - degL, tR - degR
+        print("Delta: ", deltaL, deltaR)
+        rotateTo(deltaL // 2, deltaR // 2)
     else:
         motor(1, _p, 2, _p)
     
@@ -195,3 +184,4 @@ _p = 50
 # axle track
 _axle_track = 0.095
         
+
