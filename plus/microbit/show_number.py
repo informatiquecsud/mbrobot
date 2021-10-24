@@ -10,6 +10,7 @@ def show_bin(bin_string, row_index):
     
 
 def show_number(n):
+    n = int(n)
     if n < 0:
         return
     

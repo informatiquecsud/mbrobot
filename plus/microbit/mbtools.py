@@ -27,7 +27,7 @@ class Beetle:
         self.servo.rotateTo(0)
 
     def close(self):
-        self.servo.rotateTo(80)
+        self.servo.rotateTo(96)
 
 
 forklift = Forklift(servo_1)
