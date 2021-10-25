@@ -5,10 +5,10 @@ robots.
 
 ## Maqueen robot
 
-- The modules for programming the "Maqueen:lite" robot with TigerJython or
-  Thonny are located in the `mini` folder.
+The modules for programming the "Maqueen:lite" robot with TigerJython or Thonny
+are located in the `maqueen-lite` folder.
 
 ## Maqueen Plus
 
-- The modules for programming the "Maqueen Plus" robot with TigerJython or
-  Thonny are located in the `plus` folder.
+The modules for programming the "Maqueen Plus" robot with TigerJython or Thonny
+are located in the `maqueen-plus` folder.
