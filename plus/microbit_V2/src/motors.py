@@ -5,10 +5,10 @@ from delay import delay
 i2c_motors = 0x10
 
 def cm2deg(cm):
-    return cm / 14 * 360
+    return cm / 13.5 * 360
 
 def deg2cm(deg):
-    return deg * 14 / 360
+    return deg * 13.5 / 360
 
 
 class Motor:
@@ -45,7 +45,7 @@ class Motor:
         buf = i2c.read(i2c_motors, 4)
         
         value = (buf[self.id * 2] << 8 | buf[self.id * 2 + 1])
-        return value * 360 / 80
+        return value * 360 / 79
 
        
 # Maqueen Plus motor control 
@@ -71,6 +71,7 @@ def rotateTo(tL, tR):
     tL *= reduction
     tR *= reduction
     
+    
     if abs(tL) < abs(tR):
         pL, pR = _p * (1 - abs(tR - tL) / tR), _p
     elif abs(tL) > abs(tR):
@@ -79,7 +80,10 @@ def rotateTo(tL, tR):
         pL = pR = _p
     
     
-    while (motL.readDeg(), motR.readDeg()) < (abs(tL), abs(tR)):
+    while True:
+        degL, degR = motL.readDeg(), motR.readDeg()
+        if degL > tL and degR > tR:
+            break
         if debug:
             print(dirL, int(pL), dirR, int(pR))
         motor(dirL, int(pL), dirR, int(pR))
@@ -126,9 +130,9 @@ def right(deg=None):
     if deg:
         tL, tR = 2 * deg, -2 * deg
         degL, degR = rotateTo(tL, tR)
-        deltaL, deltaR = tL - degL, tR - degR
-        print("Delta: ", deltaL, deltaR)
-        rotateTo(deltaL // 2, deltaR // 2)
+        #deltaL, deltaR = tL - degL, tR - degR
+        #print("Delta: ", deltaL, deltaR)
+        #return rotateTo(deltaL // 2, deltaR // 2)
     else:
         motor(1, _p, 2, _p)
     
