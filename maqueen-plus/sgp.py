@@ -28,8 +28,5 @@ def getValues(a=0x58):
             raw[i]|=buf[i*3+1]
     return (raw[0], raw[1])
 
-
-
-   
    
  

@@ -1,7 +1,12 @@
-# Libraries to programm the Maqueen and Maqueen Plus robots
+# Libraries to programm the Maqueen and Maqueen Plus robots with MicroPython
 
 This repo provides Pythom modules to programm the Maqueen and Maqueen Plus
-robots.
+robots. The API is an evolution of the APLU libraries for the Maqueen (mbrobot)
+included in the TigerJython distribution
+(https://tjgroup.ch/index.php?site=download).
+
+Not all the features implemented in this library are simulated in the RobotSim
+simulator included with TigerJython.
 
 ## Maqueen robot
 
