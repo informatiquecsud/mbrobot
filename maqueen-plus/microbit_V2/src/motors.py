@@ -137,14 +137,17 @@ def right(deg=None):
         motor(1, _p, 2, _p)
     
 def stop():
-    motor(1, 0, 1, 0)
+    motor(0, 0, 0, 0)
 
 # PID parameters opeen:0 close:1
-def PID(switch):
+def setPID(switch):
     buf = bytearray(2)
     buf[0] = 0x0A
     buf[1] = switch
     i2c.write(i2c_motors, buf)
+    
+# alias for compatibility with early versions
+PID = setPid
     
 def setSpeed(power):
     global _p
@@ -160,8 +163,8 @@ def v1_helper(r, v):
     else:            
         f = (r - _axle_track) / (r + _axle_track) * (1 - v * v / 200000)             
         v1 = int(f * v)
-    if 0 < v1 < 18:
-        v1 = int(20 + 18 / 5)
+    #if 0 < v1 < 18:
+    #    v1 = int(20 + 18 / 5)
     return v1
     
 def rightArc(r):
