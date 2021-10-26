@@ -97,10 +97,7 @@ def right(deg=None):
 def stop():
  motor(0,0,0,0)
 def setPID(switch):
- buf=bytearray(2)
- buf[0]=0x0A
- buf[1]=switch
- i2c.write(i2c_motors,buf)
+ i2c.write(i2c_motors,bytearray([0x0A,switch]))
 PID=setPID
 def setSpeed(power):
  global _p
