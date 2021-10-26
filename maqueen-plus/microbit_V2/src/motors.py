@@ -147,7 +147,7 @@ def setPID(switch):
     i2c.write(i2c_motors, buf)
     
 # alias for compatibility with early versions
-PID = setPid
+PID = setPID
     
 def setSpeed(power):
     global _p

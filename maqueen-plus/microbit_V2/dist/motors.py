@@ -101,7 +101,7 @@ def setPID(switch):
  buf[0]=0x0A
  buf[1]=switch
  i2c.write(i2c_motors,buf)
-PID=setPid
+PID=setPID
 def setSpeed(power):
  global _p
  _p=power
