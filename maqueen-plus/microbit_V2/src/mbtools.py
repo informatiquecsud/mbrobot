@@ -20,14 +20,22 @@ class Forklift:
 
 class Beetle:
 
-    def __init__(self, servo):
+    def __init__(self, servo, close_angle=86, open_angle=30):
         self.servo = servo
+        self.close_angle = close_angle
+        self.open_angle = open_angle
 
     def open(self):
-        self.servo.rotateTo(0)
+        self.servo.rotateTo(self.open_angle)
 
     def close(self):
-        self.servo.rotateTo(96)
+        self.servo.rotateTo(self.close_angle)
+        
+    def set_angle(self, angle):
+        self.servo.rotateTo(angle)
+        
+    def set_close_angle(self, angle):
+        self.close_angle = angle
 
 
 forklift = Forklift(servo_1)
