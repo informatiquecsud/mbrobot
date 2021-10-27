@@ -130,9 +130,6 @@ def right(deg=None):
     if deg:
         tL, tR = 2 * deg, -2 * deg
         degL, degR = rotateTo(tL, tR)
-        #deltaL, deltaR = tL - degL, tR - degR
-        #print("Delta: ", deltaL, deltaR)
-        #return rotateTo(deltaL // 2, deltaR // 2)
     else:
         motor(1, _p, 2, _p)
     
@@ -189,4 +186,5 @@ _p = 50
 # axle track
 _axle_track = 0.095
         
+
 

@@ -40,4 +40,3 @@ def setLED(state):
     else:
         leds.both(LEDState.OFF)
 
-    
