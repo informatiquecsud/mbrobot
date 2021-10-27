@@ -38,3 +38,5 @@ with open('angular_speed.csv', 'w') as csvfile:
         value =  angular_speed(power)
         print('{}\t{}'.format(power, value))
         csvfile.write('{};{}\n'.format(power, value))
+        
+    i2c.write(0, 0, 0, 0)
