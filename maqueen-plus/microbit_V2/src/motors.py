@@ -52,7 +52,7 @@ class Motor:
 # direction: 0=>stop // 1=>forward // 2=>back
 # speed：0..255
 
-debug = True
+debug = False
 
 def rotateTo(tL, tR):
     dirL, dirR = [1 if x > 0 else 2 for x in [tL, tR]]
