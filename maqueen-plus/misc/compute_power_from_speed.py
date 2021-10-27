@@ -27,6 +27,6 @@ for i in range(0, len(points)-1):
     
     print(1/m, -y/m)
     
-print(550 * 0.1111111 - 15.5555555555)
+
     
     
