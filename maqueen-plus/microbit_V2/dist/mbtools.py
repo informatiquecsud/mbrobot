@@ -20,7 +20,10 @@ class Beetle:
  def close(self):
   self.servo.rotateTo(self.close_angle)
  def set_angle(self,angle):
-  self.servo.rotateTo(angle)
+  if 30<=angle<=110:
+   self.servo.rotateTo(angle)
+  else:
+   raise ValueError("angle should be between 30Â° and 110Â°")
  def set_close_angle(self,angle):
   self.close_angle=angle
 forklift=Forklift(servo_1)
