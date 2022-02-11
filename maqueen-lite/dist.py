@@ -1,4 +1,8 @@
+'''
 
+Heavily inspired by : https://github.com/ntoll/microfs/blob/master/microfs.py
+
+'''
 
 import ast
 import sys
