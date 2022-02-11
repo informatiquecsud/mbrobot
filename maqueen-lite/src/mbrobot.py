@@ -31,19 +31,26 @@ def backward():
 def stop():
     w(0, 0, 0, 0)
         
-def right(): 
-    w(0 if _v > 0 else 1, 1 if _v > 0 else 0, _v * 800 // 1000, _v * 800 // 1000)   
+def right():
+    dirL = 0 if _v > 0 else 1
+    dirR = 1 if _v > 0 else 0
+    w(dirL, dirR, _v * 800 // 1000, _v * 800 // 1000)   
 
-def left():    
-    w(1 if _v > 0 else 0, 0 if _v > 0 else 1, _v * 800 // 1000, _v * 800 // 1000)
+def left():
+    dirL = 1 if _v > 0 else 0
+    dirR = 0 if _v > 0 else 1
+    w(dirL, dirR, _v * 800 // 1000, _v * 800 // 1000)
+
+def arc_helper(v, _axe, r):
+    if r < _axe:
+        return 0
+    else:            
+        f = (r - _axe) / (r + _axe) * (1 - v * v / 200000)             
+        return int(f * v)
 
 def rightArc(r):
     v = abs(_v)
-    if r < _axe:
-        v1 = 0
-    else:            
-        f = (r - _axe) / (r + _axe) * (1 - v * v / 200000)             
-        v1 = int(f * v)
+    v1 = arc_helper(v, _axe, r)
     if _v > 0:
         w(0, 0, v, v1)
     else:
@@ -51,11 +58,7 @@ def rightArc(r):
 
 def leftArc(r):
     v = abs(_v)
-    if r < _axe:
-        v1 = 0
-    else:
-        f = (r - _axe) / (r + _axe) * (1 - v * v / 200000)             
-        v1 = int(f * v)
+    v1 = arc_helper(v, _axe, r)
     if _v > 0:
         w(0, 0, v1, v)
     else:
