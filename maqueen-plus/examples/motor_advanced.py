@@ -6,4 +6,7 @@ def square(size_cm):
         forward(size_cm)
         right(90)
         
+        
+
+        
 square(20)
