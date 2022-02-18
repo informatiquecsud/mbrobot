@@ -1,36 +1,29 @@
-from js import window, document
-from pyodide import to_js
+# -*- pyodide:asyncify -*-
+# simulated microbit module
 
-class Pin:
-    def __init__(self, pin):
-        self._pin = pin
-    
-pin20 = Pin(20)
-pin19 = Pin(19)
+from microbit import *
+from delay import delay
 
-class I2C:
-    
-    def __init__(self):
-        pass
-    
-    def _set_i2c_device(self, device):
-        self._i2c_device = device
-    
-    def init(self, freq=100000, sda=pin20, scl=pin19):
-        pass
-    
-    def scan(self):
-        return [0x10]
-    
-    def read(self, addr, n, repeat=False):
-        return self._i2c_device.write(addr, n)
-    
-    def write(self, addr, buf, repeat=False):
-        return self._i2c_device.write(addr, to_js(buf))
-    
+_speed = 5
 
+def m(dL, sL, dR, sR):
+    i2c.write(0x10, [0x00, dL, sL, dR, sR])
 
-iframe = document.querySelector('iframe.robotsim-container')
-bot_i2c = iframe.contentWindow.mbrobot_plus_i2c
-i2c = I2C()
-i2c._set_i2c_device(bot_i2c)
+def stop():
+    m(0, 0, 0, 0)
+
+def forward():
+    m(1, _speed, 1, _speed)
+
+def backward():
+    i2c.write(0x10, [0x00, 2, _speed, 2, _speed])
+    
+def left():
+    i2c.write(0x10, [0x00, 2, _speed, 1, _speed])
+    
+def right():
+    i2c.write(0x10, [0x00, 1, _speed, 2, _speed])
+    
+def setSpeed(speed):
+    global _speed
+    _speed = speed
