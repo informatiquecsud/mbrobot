@@ -1,5 +1,14 @@
 from js import window, document
 from pyodide import to_js
+import os
+
+# Detect platform
+_platform = None
+if os.uname().sysname == 'Emscripten':
+    _platform = 'pyodide'
+elif os.uname().sysname == 'microbit':
+    _platform = 'microbit'
+
 
 class Pin:
     def __init__(self, pin):
@@ -27,6 +36,8 @@ class I2C:
     
     def write(self, addr, buf, repeat=False):
         return self._i2c_device.write(addr, to_js(buf))
+    
+    
     
 
 
