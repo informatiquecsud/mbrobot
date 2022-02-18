@@ -14,9 +14,6 @@ class I2C:
         pass
     
     def _set_i2c_device(self, device):
-        print("setting up device", device)
-        for item in dir(device):
-            print(item)
         self._i2c_device = device
     
     def init(self, freq=100000, sda=pin20, scl=pin19):
