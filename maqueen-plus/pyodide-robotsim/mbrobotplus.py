@@ -27,5 +27,3 @@ def right():
 def setSpeed(speed):
     global _speed
     _speed = speed
-    
-print("coucou")
