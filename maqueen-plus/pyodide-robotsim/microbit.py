@@ -42,6 +42,6 @@ class I2C:
 
 
 iframe = document.querySelector('iframe.robotsim-container')
-bot_i2c = iframe.contentWindow.sim.robots[0].i2c
+bot_i2c = iframe.contentWindow.mbrobot_plus_i2c
 i2c = I2C()
 i2c._set_i2c_device(bot_i2c)
