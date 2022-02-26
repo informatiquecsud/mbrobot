@@ -1,6 +1,6 @@
 from microbit import i2c, sleep
 
-i2c_adress = 0x10
+i2c_address = 0x10
 
 class ServoPort:
     
@@ -23,12 +23,15 @@ class Servo:
 
     def rotateTo(self, angle: int) -> None:
         try:
-            buf = bytearray(2)
-            buf[0] = self.id
-            buf[1] = angle
-            i2c.write(i2c_adress, buf)
+            i2c.write(i2c_address, bytearray([self.id, angle]))
         except Exception as e:
             print("Error: " + str(e))
+        
+            
+    def read_angle(self):
+        i2c.write(i2c_address, bytearray([self.id]))
+        buf = i2c.read(i2c_address, 1)
+        return buf[0]
 
 
 servo_1 = Servo(ServoPort.S1)
