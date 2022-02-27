@@ -1,5 +1,8 @@
 # -*- pyodide:asyncify -*-
-# simulated microbit module : https://github.com/informatiquecsud/mbrobot/blob/main/maqueen-plus/pyodide-robotsim/mbrobotplus.py
+'''
+simulated microbit module : 
+https://github.com/informatiquecsud/mbrobot/blob/main/maqueen-plus/pyodide-robotsim/mbrobotplus.py
+'''
 
 from microbit import *
 from delay import delay
