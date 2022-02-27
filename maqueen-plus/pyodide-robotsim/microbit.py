@@ -1,4 +1,6 @@
-# https://github.com/informatiquecsud/mbrobot/blob/main/maqueen-plus/pyodide-robotsim/microbit.py
+'''
+https://github.com/informatiquecsud/mbrobot/blob/main/maqueen-plus/pyodide-robotsim/microbit.py
+'''
 
 from js import window, document
 from pyodide import to_js
