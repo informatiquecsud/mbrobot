@@ -18,6 +18,9 @@ class Pin:
     def __init__(self, pin):
         self._pin = pin
     
+    
+pin19 = Pin(19)
+pin20 = Pin(20)
 
 
 class I2C:
@@ -41,17 +44,15 @@ class I2C:
         return self._i2c_device.write(addr, to_js(buf))
     
     
-    
+if _platform == 'pyodide':
+    iframe = document.querySelector('iframe.robotsim-container')
+    sim = iframe.contentWindow.sim
+    bot_i2c = sim.robots[0].i2c
+    i2c = I2C()
+    i2c._set_i2c_device(bot_i2c)
 
-
-iframe = document.querySelector('iframe.robotsim-container')
-sim = iframe.contentWindow.sim
-bot_i2c = sim.robots[0].i2c
-i2c = I2C()
-i2c._set_i2c_device(bot_i2c)
-
-pin13 = sim.robots[0].pin13
-pin14 = sim.robots[0].pin14
-pin8 = sim.robots[0].pin8
-pin12 = sim.robots[0].pin12
+    pin13 = sim.robots[0].pin13
+    pin14 = sim.robots[0].pin14
+    pin8 = sim.robots[0].pin8
+    pin12 = sim.robots[0].pin12
 
