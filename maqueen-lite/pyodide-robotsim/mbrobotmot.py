@@ -5,7 +5,6 @@ gc.collect()
 
 import gc
 from microbit import *
-import machine
 
 class Motor:
     def __init__(self, id):
