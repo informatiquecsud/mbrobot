@@ -82,7 +82,7 @@ def leftArc(r):
         
 def rotateMotor(side, s):
     v = abs(s)
-    d = 1 if s < 0 else 0
+    d = 1 if s < 0 else 2
     rotMot(side, d, v)
 
 def getDistance():
